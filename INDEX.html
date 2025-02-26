@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faskhad Calculator App</title>
+  <style>
+    /* Basic page styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    /* Calculator container styling */
+    .calculator {
+      width: 300px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    /* Display styling */
+    .display {
+      background-color: #222;
+      color: #fff;
+      text-align: right;
+      font-size: 2em;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+    /* Buttons grid container */
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    /* Button styling */
+    .buttons button {
+      border: 1px solid #ddd;
+      background-color: #fff;
+      font-size: 1.5em;
+      padding: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .buttons button:hover {
+      background-color: #f0f0f0;
+    }
+    /* Special buttons styling */
+    .buttons button.operator {
+      background-color: #f9f9f9;
+    }
+    .buttons button.equal {
+      grid-column: span 2;
+      background-color: #4CAF50;
+      color: #fff;
+    }
+    .buttons button.clear {
+      background-color: #f44336;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button class="clear" id="clear">C</button>
+      <button class="operator" data-value="/">÷</button>
+      <button class="operator" data-value="*">×</button>
+      <button class="operator" data-value="-">−</button>
+      <button data-value="7">7</button>
+      <button data-value="8">8</button>
+      <button data-value="9">9</button>
+      <button class="operator" data-value="+">+</button>
+      <button data-value="4">4</button>
+      <button data-value="5">5</button>
+      <button data-value="6">6</button>
+      <button class="operator" data-value="(">(</button>
+      <button data-value="1">1</button>
+      <button data-value="2">2</button>
+      <button data-value="3">3</button>
+      <button class="operator" data-value=")">)</button>
+      <button data-value="0">0</button>
+      <button data-value=".">.</button>
+      <button class="equal" id="equal">=</button>
+    </div>
+  </div>
+
+  <script>
+    // Get the display element and all buttons
+    const display = document.getElementById('display');
+    const buttons = document.querySelectorAll('.buttons button');
+
+    // Loop through each button and add a click event listener
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const value = button.getAttribute('data-value');
+
+        // Clear the display if the clear button is pressed
+        if (button.id === 'clear') {
+          display.textContent = '0';
+        }
+        // Evaluate the expression if equal button is pressed
+        else if (button.id === 'equal') {
+          try {
+            // Use eval() to evaluate the expression (note: eval should be used with caution)
+            display.textContent = eval(display.textContent);
+          } catch (error) {
+            display.textContent = 'Error';
+          }
+        }
+        // For other buttons, append the corresponding value to the display
+        else {
+          if (display.textContent === '0' || display.textContent === 'Error') {
+            display.textContent = value;
+          } else {
+            display.textContent += value;
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
