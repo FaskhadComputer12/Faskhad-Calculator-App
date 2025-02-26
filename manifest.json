@@ -1,0 +1,21 @@
+{
+  "name": "Faskhad Calculator App",
+  "short_name": "Calc",
+  "description": "A simple calculator app built with HTML, CSS, and JavaScript.",
+  "start_url": "https://faskhadcomputer12.github.io/Faskhad-Calculator-App/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
